@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\DB;
+use App\Models\Post;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,4 +20,14 @@ Route::get('/welcome', function () {
 });
 Route::get('/user', function () {
     return view('user');
+});
+Route::get('post/add', function () {
+    DB::table('posts')->insert([
+        'title' => 'Select DB',
+        'body' => 'Aruzhan'
+    ]);
+});
+Route::get('post', function () {
+    $post = Post::find(1);
+    return $post;
 });
