@@ -4,9 +4,11 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
 use App\Models\Post;
 use App\Models\Blog;
+use App\Models\Client;
 
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\ClientController;
 
 
 
@@ -40,6 +42,7 @@ Route::get('post/create', function() {
 });
 
 Route::post('post/create', [PostController::class, 'store'])->name('add-post');
+Route::get('post/{id}', [PostController::class, 'get_post']);
 
 
 
@@ -57,3 +60,16 @@ Route::get('blog/create', function() {
 
 Route::post('blog/create', [BlogController::class, 'store'])->name('add-blog');
 Route::get('blog/{id}', [BlogController::class, 'get_blog']);
+
+Route::get('client/add', function (){
+    DB::table('clients')->insert([
+        'name' => 'Aruzhan',
+        'surname' => 'Zhumabek',
+        'age' => 17
+    ]);
+});
+Route::get('client', [ClientController::class, 'index']);
+Route::get('client/create', function() {
+    return view('client.create');
+});
+Route::post('client/create', [ClientController::class, 'store'])->name('add-client');

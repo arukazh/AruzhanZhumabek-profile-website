@@ -22,4 +22,12 @@ class PostController extends Controller
 
         return back();
 }
+public function get_post($id){
+    $post = Post::find($id);
+
+    if ($post == null)
+        return response( 404);
+
+    return view('post.detail')->with(['post' => $post]);   
+}
 }
