@@ -6,6 +6,7 @@ use App\Models\Post;
 use App\Models\Blog;
 
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\PostController;
 
 
 
@@ -32,10 +33,16 @@ Route::get('post/add', function () {
         'body' => 'Aruzhan'
     ]);
 });
-Route::get('post', function () {
-    $post = Post::find(1);
-    return $post;
+Route::get('post', [PostController::class, 'index']);
+Route::get('post/create', function() {
+    return view('post.create');
+ 
 });
+
+Route::post('post/create', [PostController::class, 'store'])->name('add-post');
+
+Route::get('post/{id}', [PostController::class, 'get_post']);
+
 Route::get('blog/add', function() {
     DB::table('blogs')->insert([
         'name' => 'Aruzhan',
