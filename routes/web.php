@@ -41,7 +41,7 @@ Route::get('post/create', function() {
 
 Route::post('post/create', [PostController::class, 'store'])->name('add-post');
 
-Route::get('post/{id}', [PostController::class, 'get_post']);
+
 
 Route::get('blog/add', function() {
     DB::table('blogs')->insert([

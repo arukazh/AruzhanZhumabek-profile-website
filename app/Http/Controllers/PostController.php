@@ -13,4 +13,13 @@ class PostController extends Controller
 
          return view('post.index')->with(['posts' => $posts]);
     }  
+
+    public function store(Request $request){
+        Post::create([
+            'title' => $request->title,
+            'body' => $request->body
+        ]);
+
+        return back();
+}
 }
